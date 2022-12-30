@@ -1,4 +1,4 @@
-package hooyn.base.global.response;
+package solution.demo.global.response;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

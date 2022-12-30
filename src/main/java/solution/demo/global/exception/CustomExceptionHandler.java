@@ -1,15 +1,15 @@
-package hooyn.base.global.exception;
+package solution.demo.global.exception;
 
-import hooyn.base.global.response.ResponseWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import solution.demo.global.response.ResponseWrapper;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static hooyn.base.global.util.CustomExceptionUtil.checkErrorCode;
-import static hooyn.base.global.util.CustomExceptionUtil.checkMessage;
+import static solution.demo.global.util.CustomExceptionUtil.checkErrorCode;
+import static solution.demo.global.util.CustomExceptionUtil.checkMessage;
 
 @RestControllerAdvice
 @Slf4j

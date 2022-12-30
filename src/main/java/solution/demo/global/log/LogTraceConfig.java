@@ -1,4 +1,4 @@
-package hooyn.base.global.log;
+package solution.demo.global.log;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;

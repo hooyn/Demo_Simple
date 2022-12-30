@@ -1,4 +1,4 @@
-package hooyn.base.domain.account;
+package solution.demo.domain.account;
 
 public enum Role {
 

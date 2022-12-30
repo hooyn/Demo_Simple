@@ -1,4 +1,4 @@
-package hooyn.base.global.config;
+package solution.demo.global.config;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;

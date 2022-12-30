@@ -1,18 +1,18 @@
-package hooyn.base.domain.account.service;
+package solution.demo.domain.account.service;
 
-import hooyn.base.domain.account.Account;
-import hooyn.base.domain.account.Role;
-import hooyn.base.domain.account.dto.CreateAccountRequestDto;
-import hooyn.base.domain.account.dto.LoginRequestDto;
-import hooyn.base.domain.account.dto.LoginResponseDto;
-import hooyn.base.domain.account.dto.ReadAllAccountResponseDto;
-import hooyn.base.domain.account.repository.AccountRepository;
-import hooyn.base.global.exception.CustomException;
-import hooyn.base.global.exception.ErrorCode;
-import hooyn.base.global.util.UUIDUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import solution.demo.domain.account.Account;
+import solution.demo.domain.account.Role;
+import solution.demo.domain.account.dto.CreateAccountRequestDto;
+import solution.demo.domain.account.dto.LoginRequestDto;
+import solution.demo.domain.account.dto.LoginResponseDto;
+import solution.demo.domain.account.dto.ReadAllAccountResponseDto;
+import solution.demo.domain.account.repository.AccountRepository;
+import solution.demo.global.exception.CustomException;
+import solution.demo.global.exception.ErrorCode;
+import solution.demo.global.util.UUIDUtil;
 
 import java.util.ArrayList;
 import java.util.List;

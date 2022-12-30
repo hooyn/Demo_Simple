@@ -1,4 +1,4 @@
-package hooyn.base.global.exception;
+package solution.demo.global.exception;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

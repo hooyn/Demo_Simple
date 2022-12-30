@@ -1,7 +1,5 @@
-package hooyn.base.domain.account.email.service;
+package solution.demo.domain.account.email.service;
 
-import hooyn.base.global.exception.CustomException;
-import hooyn.base.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -9,6 +7,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
+import solution.demo.global.exception.CustomException;
+import solution.demo.global.exception.ErrorCode;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;

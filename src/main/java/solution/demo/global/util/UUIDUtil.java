@@ -1,4 +1,4 @@
-package hooyn.base.global.util;
+package solution.demo.global.util;
 
 import java.util.UUID;
 

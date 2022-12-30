@@ -1,4 +1,4 @@
-package hooyn.base.domain.account.dto;
+package solution.demo.domain.account.dto;
 
 import lombok.Getter;
 

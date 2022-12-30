@@ -1,17 +1,17 @@
-package hooyn.base.domain.account.controller;
+package solution.demo.domain.account.controller;
 
-import hooyn.base.domain.account.dto.CreateAccountRequestDto;
-import hooyn.base.domain.account.dto.LoginRequestDto;
-import hooyn.base.domain.account.service.AccountService;
-import hooyn.base.domain.account.email.dto.ConfirmEmailAuthRequestDto;
-import hooyn.base.domain.account.email.service.EmailService;
-import hooyn.base.global.response.ResponseWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import solution.demo.domain.account.dto.CreateAccountRequestDto;
+import solution.demo.domain.account.dto.LoginRequestDto;
+import solution.demo.domain.account.email.dto.ConfirmEmailAuthRequestDto;
+import solution.demo.domain.account.email.service.EmailService;
+import solution.demo.domain.account.service.AccountService;
+import solution.demo.global.response.ResponseWrapper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;

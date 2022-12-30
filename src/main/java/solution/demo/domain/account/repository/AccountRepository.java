@@ -1,7 +1,7 @@
-package hooyn.base.domain.account.repository;
+package solution.demo.domain.account.repository;
 
-import hooyn.base.domain.account.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
+import solution.demo.domain.account.Account;
 
 import java.util.Optional;
 

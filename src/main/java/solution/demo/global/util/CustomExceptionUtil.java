@@ -1,6 +1,6 @@
-package hooyn.base.global.util;
+package solution.demo.global.util;
 
-import hooyn.base.global.exception.ErrorCode;
+import solution.demo.global.exception.ErrorCode;
 
 public class CustomExceptionUtil {
 
