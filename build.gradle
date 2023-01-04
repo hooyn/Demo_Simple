@@ -22,17 +22,27 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    // thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-validation:3.0.1'
+    // email auth
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.6.3'
+    implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
+    implementation group: 'com.sun.activation', name: 'javax.activation', version: '1.2.0'
+    // websocket
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    // sockjs
+    implementation 'org.webjars:sockjs-client:1.5.1'
+    // stomp
+    implementation 'org.webjars:stomp-websocket:2.3.4'
+    // querydsl
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
     implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
     implementation "com.querydsl:querydsl-core:${queryDslVersion}"
+    // swagger
     implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
     implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
-    implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
-    implementation group: 'com.sun.activation', name: 'javax.activation', version: '1.2.0'
     compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.mysql:mysql-connector-j'
