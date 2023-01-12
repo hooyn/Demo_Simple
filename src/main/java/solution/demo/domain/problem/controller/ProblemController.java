@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import solution.demo.domain.problem.dto.CreateProblemRequestDto;
 import solution.demo.domain.problem.dto.ReadDetailProblemResponseDto;
 import solution.demo.domain.problem.dto.ReadProblemResponseDto;
+import solution.demo.domain.problem.dto.UpdateProblemDto;
 import solution.demo.domain.problem.service.ProblemService;
 import solution.demo.global.response.ResponseWrapper;
 
@@ -50,5 +51,21 @@ public class ProblemController {
         ReadDetailProblemResponseDto detailProblem = problemService.readDetailProblem(uuid);
         return new ResponseEntity<>(new ResponseWrapper(request, HttpStatus.OK,
                 true, "불만이 상세 조회되었습니다.", detailProblem), HttpStatus.OK);
+    }
+
+    @ApiOperation("불만 업데이트")
+    @PutMapping("/")
+    public ResponseEntity<?> updateProblem(@RequestBody UpdateProblemDto dto) {
+        problemService.updateProblem(dto);
+        return new ResponseEntity<>(new ResponseWrapper(request, HttpStatus.OK,
+                true, "불만이 업데이트 되었습니다.", List.of()), HttpStatus.OK);
+    }
+
+    @ApiOperation("불만 삭제")
+    @DeleteMapping("/")
+    public ResponseEntity<?> deleteProblem(@RequestParam("problem_uuid") String problem_uuid) {
+        problemService.deleteProblem(problem_uuid);
+        return new ResponseEntity<>(new ResponseWrapper(request, HttpStatus.OK,
+                true, "불만이 삭제되었습니다.", List.of()), HttpStatus.OK);
     }
 }

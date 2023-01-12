@@ -6,7 +6,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.util.StringUtils;
 import solution.demo.domain.account.Account;
+import solution.demo.domain.problem.dto.UpdateProblemDto;
 import solution.demo.global.util.BaseEntity;
 
 import javax.persistence.*;
@@ -54,5 +56,16 @@ public class Problem extends BaseEntity {
 
     public void plusViewCount() {
         this.viewCount++;
+    }
+
+    public void updateProblem(UpdateProblemDto dto) {
+        if(dto.getCategory()!=null)
+            this.category = ProblemCategory.valueOf(dto.getCategory());
+
+        if(StringUtils.hasText(dto.getText()))
+            this.text = dto.getText();
+
+        if(dto.getTokenForSolve()!=0)
+            this.tokenForSolve = dto.getTokenForSolve();
     }
 }
