@@ -49,4 +49,15 @@ public class Comment extends BaseEntity {
         this.isWriter = isWriter;
         this.isAdopted = Boolean.FALSE;
     }
+
+    public void updateContent(String content) {
+        this.content = content;
+    }
+
+    public void updateIsAdopted() {
+        if(isAdopted)
+            this.isAdopted = Boolean.FALSE;
+        else
+            this.isAdopted = Boolean.TRUE;
+    }
 }
