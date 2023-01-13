@@ -40,9 +40,9 @@ public class ProblemController {
     @ApiOperation("불만 조회")
     @GetMapping("")
     public ResponseEntity<?> readProblem() {
-        List<ReadProblemResponseDto> data = problemService.readProblems();
+        List<ReadProblemResponseDto> problems = problemService.readProblems();
         return new ResponseEntity<>(new ResponseWrapper(request, HttpStatus.OK,
-                true, "불만이 조회되었습니다.", data), HttpStatus.OK);
+                true, "불만이 조회되었습니다.", problems), HttpStatus.OK);
     }
 
     @ApiOperation("불만 상세 조회")

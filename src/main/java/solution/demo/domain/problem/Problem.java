@@ -45,6 +45,10 @@ public class Problem extends BaseEntity {
     @JoinColumn(name = "Account")
     private Account account;
 
+    // 해결이 되었는지?
+    @Column
+    private Boolean isSolved;
+
     @Builder
     public Problem(ProblemCategory category, String text, Integer tokenForSolve, Account account) {
         this.category = category;
@@ -52,6 +56,7 @@ public class Problem extends BaseEntity {
         this.viewCount = 0L;
         this.tokenForSolve = tokenForSolve;
         this.account = account;
+        this.isSolved = Boolean.FALSE;
     }
 
     public void plusViewCount() {
@@ -67,5 +72,12 @@ public class Problem extends BaseEntity {
 
         if(dto.getTokenForSolve()!=0)
             this.tokenForSolve = dto.getTokenForSolve();
+    }
+
+    public void changeIsSolved() {
+        if(this.isSolved)
+            this.isSolved = Boolean.FALSE;
+        else
+            this.isSolved = Boolean.TRUE;
     }
 }

@@ -36,11 +36,17 @@ public class Comment extends BaseEntity {
     @Column
     private Boolean isWriter;
 
+    // 작성자에게 채택되었는지
+    @Column
+    private Boolean isAdopted;
+
+
     @Builder
     public Comment(String content, Problem problem, Account commenter, Boolean isWriter) {
         this.content = content;
         this.problem = problem;
         this.commenter = commenter;
         this.isWriter = isWriter;
+        this.isAdopted = Boolean.FALSE;
     }
 }

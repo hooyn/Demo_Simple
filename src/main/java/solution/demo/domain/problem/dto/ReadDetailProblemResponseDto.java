@@ -13,9 +13,10 @@ public class ReadDetailProblemResponseDto {
     private int tokenForSolve;
     private String createdDate;
     private AccountFormDto account;
+    private boolean isSolved;
 
     @Builder
-    public ReadDetailProblemResponseDto(String problem_uuid, String category, String text, long viewCount, int tokenForSolve, String createdDate, AccountFormDto account) {
+    public ReadDetailProblemResponseDto(String problem_uuid, String category, String text, long viewCount, int tokenForSolve, String createdDate, AccountFormDto account, boolean isSolved) {
         this.problem_uuid = problem_uuid;
         this.category = category;
         this.text = text;
@@ -23,5 +24,6 @@ public class ReadDetailProblemResponseDto {
         this.tokenForSolve = tokenForSolve;
         this.createdDate = createdDate;
         this.account = account;
+        this.isSolved = isSolved;
     }
 }

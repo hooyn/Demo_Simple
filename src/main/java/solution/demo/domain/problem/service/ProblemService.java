@@ -62,7 +62,7 @@ public class ProblemService {
                 response.add(buildReadProblemResponse(problem, buildAccountForm(problem)));
 
             return response;
-        }  catch (Exception e) {
+        } catch (Exception e) {
             throw new CustomException(BAD_REQUEST, e.getMessage());
         }
     }
@@ -74,6 +74,7 @@ public class ProblemService {
                 .viewCount(problem.getViewCount())
                 .createdDate(DateUtil.getDateToString(problem.getCreatedDate()))
                 .account(account)
+                .isSolved(problem.getIsSolved())
                 .build();
     }
 
@@ -90,7 +91,7 @@ public class ProblemService {
             problem.plusViewCount();
 
             return buildDetailProblemResponse(problem, buildAccountForm(problem));
-        }  catch (Exception e) {
+        } catch (Exception e) {
             throw new CustomException(BAD_REQUEST, e.getMessage());
         }
     }
@@ -104,6 +105,7 @@ public class ProblemService {
                 .tokenForSolve(problem.getTokenForSolve())
                 .createdDate(DateUtil.getDateToString(problem.getCreatedDate()))
                 .account(account)
+                .isSolved(problem.getIsSolved())
                 .build();
     }
 
@@ -124,11 +126,11 @@ public class ProblemService {
         try {
             Optional<Problem> rawProblem = problemRepository.findById(StringToUUID(dto.getProblem_uuid()));
             if(rawProblem.isEmpty())
-                throw new CustomException(BAD_REQUEST, "등록되어 있지 않은 사용자입니다.");
+                throw new CustomException(BAD_REQUEST, "등록되어 있지 않은 불만입니다.");
 
             Problem problem = rawProblem.get();
             problem.updateProblem(dto);
-        }  catch (Exception e) {
+        } catch (Exception e) {
             throw new CustomException(BAD_REQUEST, e.getMessage());
         }
     }
@@ -137,7 +139,7 @@ public class ProblemService {
     public void deleteProblem(String problem_uuid){
         try {
             problemRepository.deleteById(StringToUUID(problem_uuid));
-        }  catch (Exception e) {
+        } catch (Exception e) {
             throw new CustomException(BAD_REQUEST, e.getMessage());
         }
     }
