@@ -60,5 +60,11 @@ public class CommentController {
     }
 
     //Adopted
-
+    @ApiOperation("댓글 채택")
+    @PostMapping("/adopt")
+    public ResponseEntity<?> adoptComment(@RequestBody AdoptCommentRequestDto dto) {
+        commentService.adoptComment(dto);
+        return new ResponseEntity<>(new ResponseWrapper(request, HttpStatus.OK,
+                true, "댓글이 채택되었습니다.", List.of()), HttpStatus.OK);
+    }
 }

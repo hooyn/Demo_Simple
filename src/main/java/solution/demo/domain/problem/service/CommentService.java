@@ -8,10 +8,7 @@ import solution.demo.domain.account.Account;
 import solution.demo.domain.account.repository.AccountRepository;
 import solution.demo.domain.problem.Comment;
 import solution.demo.domain.problem.Problem;
-import solution.demo.domain.problem.dto.CreateCommentRequestDto;
-import solution.demo.domain.problem.dto.DeleteCommentRequestDto;
-import solution.demo.domain.problem.dto.ReadCommentResponseDto;
-import solution.demo.domain.problem.dto.UpdateCommentRequestDto;
+import solution.demo.domain.problem.dto.*;
 import solution.demo.domain.problem.repository.CommentRepository;
 import solution.demo.domain.problem.repository.ProblemRepository;
 import solution.demo.global.exception.CustomException;
@@ -138,20 +135,37 @@ public class CommentService {
     }
 
     //Adopted
-    public void adoptComment(String problem_uuid, String comment_uuid) {
+    @Transactional
+    public void adoptComment(AdoptCommentRequestDto dto) {
         try {
-            // TODO: 2023-01-13 채택할 수 있는 권한 확인 로직
+            Optional<Account> rawAccount = accountRepository.findById(StringToUUID(dto.getUuid()));
+            if(rawAccount.isEmpty())
+                throw new CustomException(BAD_REQUEST, "등록되어 있지 않은 사용자입니다.");
 
-            Optional<Problem> rawProblem = problemRepository.findById(StringToUUID(problem_uuid));
+            Optional<Problem> rawProblem = problemRepository.findById(StringToUUID(dto.getProblem_uuid()));
             if(rawProblem.isEmpty())
                 throw new CustomException(BAD_REQUEST, "등록되어 있지 않은 불만입니다.");
 
-            Optional<Comment> rawComment = commentRepository.findById(StringToUUID(comment_uuid));
+            Optional<Comment> rawComment = commentRepository.findById(StringToUUID(dto.getComment_uuid()));
             if(rawComment.isEmpty())
                 throw new CustomException(BAD_REQUEST, "등록되어 있지 않은 댓글입니다.");
 
-            rawComment.get().updateIsAdopted();
-            rawProblem.get().changeIsSolved();
+            Account account = rawAccount.get();
+            Problem problem = rawProblem.get();
+            Comment comment = rawComment.get();
+
+            if(problem.getIsSolved())
+                throw new CustomException(BAD_REQUEST, "이미 채택 처리된 불만입니다.");
+
+            if(!problem.getAccount().equals(account))
+                throw new CustomException(BAD_REQUEST, "댓글을 채택할 권한이 없습니다.");
+            
+            if(comment.getCommenter().equals(account))
+                throw new CustomException(BAD_REQUEST, "작성자의 댓글을 채택할 수 없습니다.");
+
+            // todo 사용자에게 solveToken 지급
+            comment.updateIsAdopted();
+            problem.changeIsSolved();
         } catch (Exception e) {
             throw new CustomException(BAD_REQUEST, e.getMessage());
         }
