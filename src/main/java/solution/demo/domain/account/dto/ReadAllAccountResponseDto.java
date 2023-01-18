@@ -13,4 +13,5 @@ public class ReadAllAccountResponseDto {
     private String email;
     private boolean emailCheck;
     private String role;
+    private int tokenValue;
 }

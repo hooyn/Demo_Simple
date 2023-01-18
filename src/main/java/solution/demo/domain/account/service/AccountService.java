@@ -79,6 +79,7 @@ public class AccountService {
                 .email(account.getEmail())
                 .emailCheck(account.getEmailCheck())
                 .role(account.getRole().name())
+                .tokenValue(account.getTokenValue())
                 .build();
     }
 

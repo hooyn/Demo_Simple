@@ -32,24 +32,33 @@ public class ProblemService {
     //C
     public void createProblem(CreateProblemRequestDto dto) {
         try{
-            Optional<Account> account = accountRepository.findById(StringToUUID(dto.getUuid()));
-            if(account.isEmpty())
-                throw new CustomException(BAD_REQUEST, "등록되어 있지 않은 사용자입니다.");
+            Account account = validationAccount(dto.getUuid());
 
             if(dto.getTokenForSolve()>10 || dto.getTokenForSolve()<0)
                 throw new CustomException(BAD_REQUEST, "토큰의 범위는 0부터 10까지 입니다.");
 
 
-            Problem problem = Problem.builder()
-                    .category(dto.getCategory())
-                    .text(dto.getText())
-                    .tokenForSolve(dto.getTokenForSolve())
-                    .account(account.get())
-                    .build();
+            Problem problem = buildProblem(dto, account);
             problemRepository.save(problem);
         } catch (Exception e) {
             throw new CustomException(BAD_REQUEST, e.getMessage());
         }
+    }
+
+    private static Problem buildProblem(CreateProblemRequestDto dto, Account account) {
+        return Problem.builder()
+                .category(dto.getCategory())
+                .text(dto.getText())
+                .tokenForSolve(dto.getTokenForSolve())
+                .account(account)
+                .build();
+    }
+
+    private Account validationAccount(String uuid) {
+        Optional<Account> rawAccount = accountRepository.findById(StringToUUID(uuid));
+        if(rawAccount.isEmpty())
+            throw new CustomException(BAD_REQUEST, "등록되어 있지 않은 사용자입니다.");
+        return rawAccount.get();
     }
 
     //R
@@ -80,14 +89,9 @@ public class ProblemService {
 
     //DR
     @Transactional
-    public ReadDetailProblemResponseDto readDetailProblem(String uuid) {
+    public ReadDetailProblemResponseDto readDetailProblem(String problem_uuid) {
         try {
-            Optional<Problem> rawProblem = problemRepository.findById(StringToUUID(uuid));
-
-            if(rawProblem.isEmpty())
-                throw new CustomException(BAD_REQUEST, "등록되어 있지 않은 불만입니다.");
-
-            Problem problem = rawProblem.get();
+            Problem problem = validationProblem(problem_uuid);
             problem.plusViewCount();
 
             return buildDetailProblemResponse(problem, buildAccountForm(problem));
@@ -124,11 +128,7 @@ public class ProblemService {
     @Transactional
     public void updateProblem(UpdateProblemDto dto) {
         try {
-            Optional<Problem> rawProblem = problemRepository.findById(StringToUUID(dto.getProblem_uuid()));
-            if(rawProblem.isEmpty())
-                throw new CustomException(BAD_REQUEST, "등록되어 있지 않은 불만입니다.");
-
-            Problem problem = rawProblem.get();
+            Problem problem = validationProblem(dto.getProblem_uuid());
             problem.updateProblem(dto);
         } catch (Exception e) {
             throw new CustomException(BAD_REQUEST, e.getMessage());
@@ -142,5 +142,12 @@ public class ProblemService {
         } catch (Exception e) {
             throw new CustomException(BAD_REQUEST, e.getMessage());
         }
+    }
+
+    private Problem validationProblem(String problem_uuid) {
+        Optional<Problem> rawProblem = problemRepository.findById(StringToUUID(problem_uuid));
+        if(rawProblem.isEmpty())
+            throw new CustomException(BAD_REQUEST, "등록되어 있지 않은 불만입니다.");
+        return rawProblem.get();
     }
 }

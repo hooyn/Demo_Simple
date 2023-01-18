@@ -38,6 +38,9 @@ public class Account {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @Column()
+    private Integer tokenValue;
+
     @Builder
     public Account(String username, String userId, String password, String email, Boolean emailCheck, Role role) {
         this.username = username;
@@ -46,5 +49,14 @@ public class Account {
         this.email = email;
         this.emailCheck = emailCheck;
         this.role = role;
+        this.tokenValue = 0;
+    }
+
+    public void addTokenValue(int value) {
+        this.tokenValue += value;
+    }
+
+    public void subTokenValue(int value) {
+        this.tokenValue -= value;
     }
 }
