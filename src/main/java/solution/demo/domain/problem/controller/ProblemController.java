@@ -42,10 +42,10 @@ public class ProblemController {
                 true, "불만이 조회되었습니다.", problems), HttpStatus.OK);
     }
 
-    @ApiOperation("불만 상세 조회")
+    @ApiOperation("불만 상세조회")
     @GetMapping("/detail")
-    public ResponseEntity<?> readProblem(@RequestParam("uuid") String uuid) {
-        ReadDetailProblemResponseDto detailProblem = problemService.readDetailProblem(uuid);
+    public ResponseEntity<?> readProblem(@RequestParam("problem_uuid") String problem_uuid) {
+        ReadDetailProblemResponseDto detailProblem = problemService.readDetailProblem(problem_uuid);
         return new ResponseEntity<>(new ResponseWrapper(request, HttpStatus.OK,
                 true, "불만이 상세 조회되었습니다.", detailProblem), HttpStatus.OK);
     }

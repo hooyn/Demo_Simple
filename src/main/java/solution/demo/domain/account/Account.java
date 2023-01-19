@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import solution.demo.global.exception.CustomException;
+import solution.demo.global.exception.ErrorCode;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -57,6 +59,8 @@ public class Account {
     }
 
     public void subTokenValue(int value) {
+        if((this.tokenValue - value) < 0)
+            throw new CustomException(ErrorCode.BAD_REQUEST, "tokenValue는 음수가 될 수 없습니다.");
         this.tokenValue -= value;
     }
 }
